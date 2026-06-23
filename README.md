@@ -3,7 +3,7 @@
 An interactive, futuristic 3D website built using **Three.js** and **GSAP (GreenSock)**. The concept revolves around a "Hyper-Space Nexus"—a digital corridor filled with floating crystalline polyhedrons, neon energy paths, and interactive digital dust.
 
 ## 🚀 Live Demo & Repository
-- **GitHub Repository**: [https://github.com/OpticRish/TechFest3D.git](https://github.com/OpticRish/TechFest3D.git)
+- **GitHub Repository**: [https://github.com/OpticRish/TechFest3D.git]
 
 ---
 
@@ -48,7 +48,7 @@ Since this is a client-side static site, no complicated setup is required:
     cd TechFest3D
     ```
 2.  **Open the Files**:
-    - Simply open the [index.html](file:///c:/Users/RAJ/Documents/CODING/3DTechFest/index.html) file directly in any modern web browser.
+    - Simply open the [index.html] file directly in any modern web browser.
     - Alternatively, use a development server like VS Code's **Live Server** extension or Python's HTTP server for optimal local performance:
       ```bash
       python -m http.server 8000
