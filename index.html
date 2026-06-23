@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECHFEST 2026 | Hyper-Space Nexus</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- WebGL Background Canvas -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav-pill" id="navbar">
+            <div class="logo">TECHFEST</div>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#stats">Stats</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="content-container">
+
+        <!-- HERO SECTION -->
+        <section class="section hero" id="hero">
+            <div class="hero-content">
+                <span class="badge">PRESENTS 2026 EDITION</span>
+                <h1>HYPER-SPACE<br><span class="gradient-text">NEXUS</span></h1>
+                <p class="subtitle">Experience technology beyond the physical realm. A multi-dimensional coding, robotics, and AI platform.</p>
+                <button class="cta-btn" id="explore-btn">
+                    <span>EXPLORE NEXUS</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </div>
+        </section>
+
+        <!-- STATS SECTION -->
+        <section class="section stats" id="stats">
+            <div class="section-header">
+                <h2 class="title-glow">THE SCALE</h2>
+                <p>Metrics of the ultimate innovation hub</p>
+            </div>
+            <div class="stats-grid">
+                <div class="glass-card stat-card" id="stat-participants">
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">Innovators</div>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="glass-card stat-card" id="stat-events">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Championships</div>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="glass-card stat-card" id="stat-workshops">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">Industry Keynotes</div>
+                    <div class="card-glow"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVENTS SECTION -->
+        <section class="section events" id="events">
+            <div class="section-header">
+                <h2 class="title-glow">FEATURED BATTLES</h2>
+                <p>Pushing limits. Redefining possibilities.</p>
+            </div>
+            <div class="event-grid">
+                <div class="glass-card event-card" id="event-hackathon">
+                    <div class="event-badge">HOT</div>
+                    <h3>NEURAL HACKATHON</h3>
+                    <p>A 24-hour sprint to build AI-driven solutions addressing real-world telemetry and automation.</p>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="glass-card event-card" id="event-robowars">
+                    <div class="event-badge">ARENA</div>
+                    <h3>ROBOWARS X</h3>
+                    <p>Heavyweight combat machines colliding in a custom bulletproof steel cage for glory.</p>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="glass-card event-card" id="event-aiarena">
+                    <div class="event-badge">FUTURE</div>
+                    <h3>AI ARENA</h3>
+                    <p>Algorithmic combat where autonomous bots challenge each other in simulated tactical gamefields.</p>
+                    <div class="card-glow"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section class="section about" id="about">
+            <div class="glass-about-card">
+                <h2 class="title-glow">BEYOND INNOVATION</h2>
+                <p>Techfest 2026 is the gateway to emerging tech frontiers. We connect visionaries, industry leaders, and developers in a unified virtual-physical ecosystem. Dare to step through the portal.</p>
+                <div class="portal-indicator">
+                    <span class="ping"></span>
+                    <span class="portal-text">PORTAL ONLINE</span>
+                </div>
+                <div class="card-glow"></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>DESIGNED BY RISHABH</p>
+        </footer>
+
+    </main>
+
+    <!-- JS Libraries (Three.js and GSAP with ScrollTrigger) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

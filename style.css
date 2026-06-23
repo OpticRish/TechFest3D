@@ -1,0 +1,549 @@
+/* --- DESIGN SYSTEM TOKENS --- */
+:root {
+    --bg-color: #030014;
+    --text-color: #f3f4f6;
+    --text-muted: #9ca3af;
+    --primary: #7c3aed; /* Purple */
+    --primary-glow: rgba(124, 58, 237, 0.4);
+    --secondary: #06b6d4; /* Cyan */
+    --secondary-glow: rgba(6, 182, 212, 0.4);
+    --accent: #ec4899; /* Pink */
+    --accent-glow: rgba(236, 72, 153, 0.4);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --font-heading: 'Orbitron', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+/* --- RESET & BASIC STYLES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+}
+
+body {
+    overflow-x: hidden;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* --- WEBGL CANVAS --- */
+#webgl-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: auto; /* Allow interactions on the canvas */
+}
+
+/* --- HEADER & NAVIGATION --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 24px 0;
+    pointer-events: none;
+}
+
+.nav-pill {
+    max-width: 900px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 12px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(3, 0, 20, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    pointer-events: auto;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-pill:hover {
+    border-color: rgba(6, 182, 212, 0.3);
+    box-shadow: 0 10px 40px -10px rgba(6, 182, 212, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--text-color) 40%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    cursor: default;
+}
+
+.nav-pill ul {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+}
+
+.nav-pill a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-pill a:hover {
+    color: var(--secondary);
+    text-shadow: 0 0 8px var(--secondary-glow);
+}
+
+/* --- CONTENT CONTAINER & SECTIONS --- */
+.content-container {
+    position: relative;
+    z-index: 10;
+    pointer-events: none; /* Let clicks pass through to WebGL canvas by default */
+}
+
+.section {
+    min-height: 100vh;
+    width: 100%;
+    padding: 120px 8% 80px 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    pointer-events: none; /* Let canvas capture scroll/mouse */
+}
+
+/* Enable pointer events on child container cards so they are clickable */
+.hero-content, 
+.stats-grid,
+.event-grid,
+.glass-about-card,
+.section-header {
+    pointer-events: auto;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    align-items: flex-start;
+}
+
+.hero-content {
+    max-width: 650px;
+    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 30px;
+    background: rgba(124, 58, 237, 0.1);
+    border: 1px solid rgba(124, 58, 237, 0.25);
+    color: #c084fc;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.1);
+}
+
+.hero h1 {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 4.8rem;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 50%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 2px 10px rgba(6, 182, 212, 0.25));
+}
+
+.subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 520px;
+}
+
+/* --- BUTTONS --- */
+.cta-btn {
+    position: relative;
+    padding: 16px 36px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    color: white;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cta-btn span {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, var(--accent) 0%, transparent 60%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease;
+    z-index: 1;
+    opacity: 0.6;
+}
+
+.cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.5);
+}
+
+.cta-btn:hover .btn-glow {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* --- SECTION GENERAL HEADERS --- */
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.title-glow {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+/* --- GLASS CARD DESIGN --- */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+}
+
+.card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(6, 182, 212, 0.12) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.glass-card:hover {
+    border-color: rgba(6, 182, 212, 0.25);
+    box-shadow: 0 20px 45px -15px rgba(6, 182, 212, 0.2);
+    transform: translateY(-8px);
+}
+
+.glass-card:hover .card-glow {
+    opacity: 1;
+}
+
+/* --- STATS SECTION --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.stat-card {
+    padding: 50px 30px;
+    text-align: center;
+}
+
+.stat-number {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ffffff 40%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 12px;
+}
+
+.stat-label {
+    font-family: var(--font-heading);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+/* --- EVENTS SECTION --- */
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.event-card {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 280px;
+}
+
+.event-badge {
+    align-self: flex-start;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.25);
+    color: var(--secondary);
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+}
+
+.event-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+}
+
+.event-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* --- ABOUT SECTION --- */
+.about {
+    align-items: center;
+}
+
+.glass-about-card {
+    max-width: 900px;
+    width: 100%;
+    padding: 60px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-about-card h2 {
+    font-family: var(--font-heading);
+    font-size: 2.6rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #ffffff 40%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.glass-about-card p {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.portal-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 18px;
+    border-radius: 30px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.ping {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    position: relative;
+}
+
+.ping::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #10b981;
+    animation: ping-animation 1.5s infinite ease-out;
+}
+
+.portal-text {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #10b981;
+    letter-spacing: 1px;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ping-animation {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(2.8);
+        opacity: 0;
+    }
+}
+
+/* --- FOOTER --- */
+.footer {
+    width: 100%;
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+    background: rgba(3, 0, 20, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    pointer-events: auto;
+}
+
+.footer p {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.footer p:hover {
+    color: var(--secondary);
+    text-shadow: 0 0 10px var(--secondary-glow);
+}
+
+/* --- RESPONSIVE STYLES --- */
+@media (max-width: 992px) {
+    .hero h1 {
+        font-size: 3.8rem;
+    }
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 500px;
+    }
+    .stat-card {
+        padding: 30px 20px;
+    }
+    .glass-about-card {
+        padding: 40px 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-pill {
+        padding: 8px 20px;
+    }
+    .nav-pill ul {
+        gap: 16px;
+    }
+    .nav-pill a {
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+    }
+    .logo {
+        font-size: 1.1rem;
+    }
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+    .subtitle {
+        font-size: 1rem;
+    }
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    .glass-about-card h2 {
+        font-size: 1.8rem;
+    }
+    .glass-about-card p {
+        font-size: 1rem;
+    }
+}
